@@ -48,7 +48,8 @@ def generate_markdown_tree(directory, exclude_patterns=None, prefix="", is_last=
     # Create the current line
     if current_depth == 0:
         # Root directory
-        line = f"# {name}/\n\n```markdown\n"
+        #line = f"# {name}/\n\n```markdown\n"
+        line = f"# File Tree Structure\n\nDirectory: {directory}\n\n```text\n"
         child_prefix = ""
     else:
         if is_last:
@@ -128,6 +129,8 @@ def main():
     args = parser.parse_args()
     
     directory = os.path.abspath(args.directory)
+    if not directory.endswith(os.sep):
+        directory += os.sep
     exclude_patterns = [pattern.strip() for pattern in args.exclude.split(',')] if args.exclude else []
     
     # Default patterns to exclude
@@ -143,9 +146,15 @@ def main():
     
     # Output the result
     if args.output:
-        with open(args.output, 'w') as f:
+        fileNameOutput = f"{args.output}"
+        # Check if the filename does not end with ".md" (case-insensitive)
+        if not fileNameOutput.lower().endswith(".md"):
+            fileNameOutput += ".md"
+        if os.path.exists(fileNameOutput):
+            os.remove(fileNameOutput)
+        with open(fileNameOutput, 'w') as f:
             f.write(markdown_tree)
-        print(f"Tree written to {args.output}")
+        print(f"Tree written to \"{fileNameOutput}\".")
     else:
         print(markdown_tree)
 
