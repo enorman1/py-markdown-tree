@@ -49,7 +49,7 @@ def generate_markdown_tree(directory, exclude_patterns=None, prefix="", is_last=
     if current_depth == 0:
         # Root directory
         #line = f"# {name}/\n\n```markdown\n"
-        line = f"# File Tree Structure\n\nDirectory: {directory}\n\n```text\n"
+        line = f"# File Tree Structure\n\nDirectory: `{directory}`\n\n```text\n"
         child_prefix = ""
     else:
         if is_last:
