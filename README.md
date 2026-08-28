@@ -142,4 +142,5 @@ MIT License
 
 ## Author
 
-Gustavo Leig
+2025 - Gustavo Leig
+2026 - enorman1
