@@ -1,6 +1,6 @@
 # File Tree Structure
 
-Directory: /home/enorman1/Documents/Python/example/sgpc-loader/
+Directory: `/home/user/Documents/Python/example/sgpc-loader/`
 
 ```text
 ├── alembic/
