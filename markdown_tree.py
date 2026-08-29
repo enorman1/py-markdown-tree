@@ -18,7 +18,7 @@ Arguments:
 import os
 import argparse
 import fnmatch
-
+import sys
 
 def generate_markdown_tree(directory, exclude_patterns=None, prefix="", is_last=True, max_depth=None, current_depth=0):
     """
@@ -128,7 +128,20 @@ def main():
     
     args = parser.parse_args()
     
-    directory = os.path.abspath(args.directory)
+    if len(args.directory) > 1:
+        # Check if the path exists
+        if os.path.exists(args.directory):
+            if os.path.isdir(args.directory):
+                directory = os.path.abspath(args.directory)
+            else:
+                print("Error: The provided argument is a file, not a directory.")
+                sys.exit(1)
+        else:
+            print("Error: The provided path does not exist.")
+            sys.exit(1)
+    else:
+        directory = os.getcwd() #the current working directory
+    
     if not directory.endswith(os.sep):
         directory += os.sep
     exclude_patterns = [pattern.strip() for pattern in args.exclude.split(',')] if args.exclude else []
