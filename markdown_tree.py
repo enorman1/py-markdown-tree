@@ -7,12 +7,13 @@ representation of the directory structure, which can be used in
 documentation files.
 
 Usage:
-    python markdown_tree.py [directory_path] [max_depth] [--exclude pattern1,pattern2]
+    python markdown_tree.py [directory_path] [max_depth] [--exclude pattern1,pattern2] [--output filename]
 
 Arguments:
     directory_path: Path to the directory to scan (default: current directory)
     max_depth: Maximum depth of directories to show (default: no limit)
     --exclude: Comma-separated patterns of files/directories to exclude
+    --output: optional name of the output file (if not specified, default output is: stdout)
 """
 
 import os

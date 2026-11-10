@@ -4,18 +4,9 @@ A simple Python utility to generate Markdown-formatted directory trees for docum
 
 This is very usefull to add the project files and folder structure in a way that Artificial Ingelligence can read.
 
-Whe using cursor or windsurf, add the generated file to your project readme.md and see the results for yourself.
+The generated structure uses UTF-8 encoded characters (excluding 16-bit Unicode characters).
 
-ps: I found out that the tree command in macos (installed with `brew install tree`) works the same way, but this was fun to create.
-
-```
-(.venv) ➜  py-markdown-tree git:(main) tree
-.
-├── README.md
-├── markdown_tree.py
-└── project_structure.md
-```
-
+To save the result to a file, use the `>` operator in a terminal (bash) to redirect the output to a file of your choice. You can achieve the same result by using the optional `--output` argument.
 
 ## Features
 
@@ -93,21 +84,24 @@ python markdown_tree.py /path/to/project 4 --exclude "dist,build" --output docs/
 ## Example Output
 
 ```markdown
-# my-project/
+# File Tree Structure
 
-├── src/
-│   ├── components/
-│   │   ├── Button.js
-│   │   └── Header.js
-│   ├── utils/
-│   │   └── helpers.js
-│   └── index.js
-├── tests/
-│   └── unit/
-│       └── helpers.test.js
-├── .gitignore
-├── package.json
-└── README.md
+Directory: `/my-project/Directory/`
+
+Directory
+|-- src/
+|   |-- components/
+|   |   |-- Button.js
+|   |   \-- Header.js
+|   |-- utils/
+|   |   \-- helpers.js
+|   \-- index.js
+|-- tests/
+|   \-- unit/
+|       \-- helpers.test.js
+|-- .gitignore
+|-- package.json
+\-- README.md
 ```
 
 ## Default Exclusions
