@@ -43,7 +43,11 @@ def generate_markdown_tree(directory, exclude_patterns=None, prefix="", is_last=
         return ""
     
     # Get the name of the directory
-    name = os.path.basename(directory[:-1]) # remove the final {os.sep} character
+    #if directory[-1] == os.sep:
+    #    name = os.path.basename(directory[:-1]) # remove the final {os.sep} character
+    #else:
+    #    name = os.path.basename(directory)
+    name = os.path.basename(os.path.normpath(directory))
     
     # Create the current line
     if current_depth == 0:
@@ -53,11 +57,11 @@ def generate_markdown_tree(directory, exclude_patterns=None, prefix="", is_last=
         child_prefix = ""
     else:
         if is_last:
-            branch = "└── "
+            branch = "\-- " #branch = "└── "
             child_prefix = prefix + "    "
         else:
-            branch = "├── "
-            child_prefix = prefix + "│   "
+            branch = "|-- " #branch = "├── "
+            child_prefix = prefix + "|   " #child_prefix = prefix + "│   "
             
         line = f"{prefix}{branch}{name}/\n"
     
@@ -106,9 +110,9 @@ def generate_markdown_tree(directory, exclude_patterns=None, prefix="", is_last=
     for i, file in enumerate(files):
         is_last_file = (i == len(files) - 1)
         if is_last_file:
-            branch = "└── "
+            branch = "\-- " #branch = "└── "
         else:
-            branch = "├── "
+            branch = "|-- " #branch = "├── "
         line += f"{child_prefix}{branch}{file}\n"
     
     # Add closing marker for root
